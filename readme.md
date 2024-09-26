@@ -82,3 +82,16 @@
 - kubectl -n argocd get services
 - kubectl port-forward svc/argocd-server -n argocd 8080:443
 - kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath='{.data.password}' | base64 -d && echo
+
+
+### Lick ArgoCD with Github Repo
+- Copy Github repos HTTP url
+- Go to ArgoCD UI. Go to Settings --> Repositories --> Connect Repo Using HTTPS
+
+### Create ArgoCD Apps
+- Create ArgoCD Application to deploy application from Github
+- Applications --> New APp
+
+
+- kubectl -n default get all
+- kubectl port-forward svc/nginx-service -n argocd 8081:80

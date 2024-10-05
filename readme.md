@@ -95,3 +95,31 @@
 
 - kubectl -n default get all
 - kubectl port-forward svc/nginx-service -n argocd 8081:80
+
+
+### Changing Argocd password
+- argocd login localhost:8080
+- yes
+- argocd account update-password
+
+### Syncing updated infrastructure manifests
+- Check deployment replicas
+- Update replicas in deployment
+- Change number of replicas to 2
+- Commit and push to master branch in github
+- Change reflected in argocd 
+- Sync in argocd
+- kubectl -n default get replicaset
+
+
+### Configuring deployments using kiubectl
+- kubectl scale deploy nginx-deployment --replicas 3
+- kubectl get all
+- Current state does not match with source of truth
+
+### Automated Sync, automated pruning and self-healing
+- Go to app details
+- Sync Policy --> Enable Auto Sync
+- Automated Sync will not delete resources
+- If you want to autoamted sync to be able to delete resource --> Enable Prune resources
+- Changes made to the live cluster will not trigger automated sync. If you manually use kubectl to update your application. It is possible that your live deployment will be out of sync with what you have in Git. Enable self-healing to avoid this. With this setting the live state of our deployment will always match what we have in Git.
